@@ -8,10 +8,24 @@ const btnCloseModal = document.querySelector('.close-modal');
 
 const btnsShowModel = document.querySelectorAll('.show-modal');
 
-const mostrar = function (event) {
-  console.log(event.currentTarget);
+btnsShowModel.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+  });
+});
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
 };
 
-btnsShowModel.forEach(btn => {
-  btn.addEventListener('click', mostrar);
+btnCloseModal.addEventListener('click', closeModal);
+
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
 });
